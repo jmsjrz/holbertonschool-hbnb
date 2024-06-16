@@ -3,6 +3,12 @@ import json
 from app import create_app
 
 class AmenityEndpointsTestCase(unittest.TestCase):
+    """
+    Test case for the Amenity endpoints.
+
+    This class contains test methods to verify the functionality of the Amenity endpoints in the API.
+    """
+
     def setUp(self):
         self.app = create_app()
         self.client = self.app.test_client()

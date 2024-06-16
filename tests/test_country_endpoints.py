@@ -3,6 +3,10 @@ import json
 from app import create_app
 
 class CountryEndpointsTestCase(unittest.TestCase):
+    """
+    Test case for the country endpoints in the API.
+    """
+
     def setUp(self):
         self.app = create_app()
         self.client = self.app.test_client()

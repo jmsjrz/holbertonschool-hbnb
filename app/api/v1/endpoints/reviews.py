@@ -38,6 +38,18 @@ class ReviewResource(Resource):
     @reviews_api.marshal_with(review_model)
     def get(self, review_id):
         '''Fetch a review given its identifier'''
+        """
+        Retrieves a review from the database based on the provided review_id.
+
+        Args:
+            review_id (str): The identifier of the review to fetch.
+
+        Returns:
+            dict: The retrieved review.
+
+        Raises:
+            404: If the review is not found in the database.
+        """
         review = reviews_db.get(review_id)
         if review is None:
             reviews_api.abort(404, "Review not found")
@@ -48,6 +60,18 @@ class ReviewResource(Resource):
     @reviews_api.marshal_with(review_model)
     def put(self, review_id):
         '''Update a review given its identifier'''
+        """
+        Updates a review in the database based on the provided review_id.
+
+        Args:
+            review_id (str): The identifier of the review to update.
+
+        Returns:
+            tuple: A tuple containing the updated review and the HTTP status code 200.
+
+        Raises:
+            404: If the review is not found in the database.
+        """
         if review_id not in reviews_db:
             reviews_api.abort(404, "Review not found")
         updated_review = reviews_api.payload
@@ -58,6 +82,18 @@ class ReviewResource(Resource):
     @reviews_api.doc('delete_review')
     def delete(self, review_id):
         '''Delete a review given its identifier'''
+        """
+        Deletes a review from the database based on the provided review_id.
+
+        Args:
+            review_id (str): The identifier of the review to delete.
+
+        Returns:
+            tuple: A tuple containing an empty string and the HTTP status code 204.
+
+        Raises:
+            404: If the review is not found in the database.
+        """
         if review_id in reviews_db:
             del reviews_db[review_id]
             return '', 204

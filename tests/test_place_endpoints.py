@@ -3,6 +3,10 @@ import json
 from app import create_app
 
 class PlaceEndpointsTestCase(unittest.TestCase):
+    """
+    Test case for the endpoints related to the Place resource.
+    """
+
     def setUp(self):
         self.app = create_app()
         self.client = self.app.test_client()

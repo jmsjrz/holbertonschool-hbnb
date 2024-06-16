@@ -1,3 +1,5 @@
+# This file contains the required Python packages and their versions for the project.
+
 Flask
 Flask-RESTful
 Flask-SQLAlchemy

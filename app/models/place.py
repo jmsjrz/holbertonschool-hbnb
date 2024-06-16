@@ -5,6 +5,26 @@ from app.persistence.data_manager import DataManager
 storage = DataManager()
 
 class Place:
+    """
+    Place class represents a place object with various attributes.
+
+    Attributes:
+        id (str): The unique identifier of the place.
+        name (str): The name of the place.
+        description (str): The description of the place.
+        address (str): The address of the place.
+        city_id (str): The ID of the city where the place is located.
+        latitude (float): The latitude coordinate of the place.
+        longitude (float): The longitude coordinate of the place.
+        host_id (str): The ID of the host who owns the place.
+        num_rooms (int): The number of rooms in the place.
+        num_bathrooms (int): The number of bathrooms in the place.
+        price_per_night (float): The price per night for the place.
+        max_guests (int): The maximum number of guests allowed in the place.
+        created_at (datetime): The timestamp when the place was created.
+        updated_at (datetime): The timestamp when the place was last updated.
+    """
+
     def __init__(self, name, description, address, city_id, latitude, longitude, host_id, num_rooms, num_bathrooms, price_per_night, max_guests):
         self.id = str(uuid.uuid4())
         self.name = name
@@ -22,13 +42,25 @@ class Place:
         self.updated_at = datetime.utcnow()
 
     def save(self):
+        """
+        Save the place object to the storage.
+        """
         self.updated_at = datetime.utcnow()
         storage.save(self)
 
     def delete(self):
+        """
+        Delete the place object from the storage.
+        """
         storage.delete(self.id, 'Place')
 
     def to_dict(self):
+        """
+        Convert the place object to a dictionary.
+
+        Returns:
+            dict: A dictionary representation of the place object.
+        """
         return {
             'id': self.id,
             'name': self.name,
@@ -48,6 +80,15 @@ class Place:
 
     @staticmethod
     def get(place_id):
+        """
+        Retrieve a place object by its ID.
+
+        Args:
+            place_id (str): The ID of the place to retrieve.
+
+        Returns:
+            Place: The place object if found, None otherwise.
+        """
         data = storage.get(place_id, 'Place')
         if data:
             place = Place(
@@ -71,6 +112,12 @@ class Place:
 
     @staticmethod
     def get_all():
+        """
+        Retrieve all place objects.
+
+        Returns:
+            list: A list of all place objects.
+        """
         data = storage.get_all('Place')
         places = []
         for item in data:

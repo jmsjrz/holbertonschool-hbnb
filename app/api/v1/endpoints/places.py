@@ -36,6 +36,18 @@ class PlaceResource(Resource):
     @places_api.marshal_with(place_model)
     def get(self, place_id):
         '''Fetch a place given its identifier'''
+        """
+        Retrieves a place from the database based on the provided place_id.
+
+        Args:
+            place_id (str): The identifier of the place.
+
+        Returns:
+            dict: The place information.
+
+        Raises:
+            404: If the place is not found in the database.
+        """
         place = places_db.get(place_id)
         if place is None:
             places_api.abort(404, "Place not found")
@@ -46,6 +58,18 @@ class PlaceResource(Resource):
     @places_api.marshal_with(place_model)
     def put(self, place_id):
         '''Update a place given its identifier'''
+        """
+        Updates a place in the database based on the provided place_id.
+
+        Args:
+            place_id (str): The identifier of the place.
+
+        Returns:
+            tuple: A tuple containing the updated place information and the HTTP status code 200.
+
+        Raises:
+            404: If the place is not found in the database.
+        """
         if place_id not in places_db:
             places_api.abort(404, "Place not found")
         updated_place = places_api.payload
@@ -56,6 +80,18 @@ class PlaceResource(Resource):
     @places_api.doc('delete_place')
     def delete(self, place_id):
         '''Delete a place given its identifier'''
+        """
+        Deletes a place from the database based on the provided place_id.
+
+        Args:
+            place_id (str): The identifier of the place.
+
+        Returns:
+            tuple: A tuple containing an empty string and the HTTP status code 204.
+
+        Raises:
+            404: If the place is not found in the database.
+        """
         if place_id in places_db:
             del places_db[place_id]
             return '', 204

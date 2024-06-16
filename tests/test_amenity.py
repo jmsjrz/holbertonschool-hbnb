@@ -5,6 +5,10 @@ from app.models.amenity import Amenity
 from app.persistence.data_manager import DataManager
 
 class AmenityModelTestCase(unittest.TestCase):
+    """
+    Test case for the Amenity model.
+    """
+
     def setUp(self):
         self.data_manager = DataManager()
         self.test_file = self.data_manager.file_path

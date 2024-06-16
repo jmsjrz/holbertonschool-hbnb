@@ -5,6 +5,19 @@ from app.persistence.data_manager import DataManager
 storage = DataManager()
 
 class User:
+    """
+    Represents a user in the system.
+
+    Attributes:
+        id (str): The unique identifier of the user.
+        email (str): The email address of the user.
+        first_name (str): The first name of the user.
+        last_name (str): The last name of the user.
+        password (str): The password of the user.
+        created_at (datetime): The timestamp when the user was created.
+        updated_at (datetime): The timestamp when the user was last updated.
+    """
+
     def __init__(self, email, first_name, last_name, password=None):
         self.id = str(uuid.uuid4())
         self.email = email
@@ -15,15 +28,30 @@ class User:
         self.updated_at = datetime.utcnow()
 
     def save(self):
+        """
+        Saves the user to the storage.
+
+        Raises:
+            ValueError: If the email already exists.
+        """
         if not self.is_email_unique():
             raise ValueError("Email already exists.")
         self.updated_at = datetime.utcnow()
         storage.save(self)
 
     def delete(self):
+        """
+        Deletes the user from the storage.
+        """
         storage.delete(self.id, 'User')
 
     def to_dict(self):
+        """
+        Converts the user object to a dictionary.
+
+        Returns:
+            dict: A dictionary representation of the user object.
+        """
         return {
             'id': self.id,
             'email': self.email,
@@ -35,6 +63,12 @@ class User:
         }
 
     def is_email_unique(self):
+        """
+        Checks if the email is unique among all users.
+
+        Returns:
+            bool: True if the email is unique, False otherwise.
+        """
         users = User.get_all()
         for user in users:
             if user.email == self.email and user.id != self.id:
@@ -43,6 +77,15 @@ class User:
 
     @staticmethod
     def get(user_id):
+        """
+        Retrieves a user by their ID.
+
+        Args:
+            user_id (str): The ID of the user to retrieve.
+
+        Returns:
+            User: The user object if found, None otherwise.
+        """
         data = storage.get(user_id, 'User')
         if data:
             user = User(
@@ -59,6 +102,12 @@ class User:
 
     @staticmethod
     def get_all():
+        """
+        Retrieves all users.
+
+        Returns:
+            list: A list of user objects.
+        """
         data = storage.get_all('User')
         users = []
         for item in data:

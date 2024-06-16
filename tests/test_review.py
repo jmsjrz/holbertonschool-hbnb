@@ -4,6 +4,10 @@ from app.models.review import Review
 from app.persistence.data_manager import DataManager
 
 class ReviewModelTestCase(unittest.TestCase):
+    """
+    Test case for the Review model.
+    """
+
     def setUp(self):
         self.data_manager = DataManager()
         self.review = Review(

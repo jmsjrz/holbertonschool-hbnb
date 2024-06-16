@@ -5,6 +5,10 @@ from app.models.city import City
 from app.persistence.data_manager import DataManager
 
 class CityModelTestCase(unittest.TestCase):
+    """
+    Test case for the City model class.
+    """
+
     def setUp(self):
         self.data_manager = DataManager()
         self.test_file = self.data_manager.file_path

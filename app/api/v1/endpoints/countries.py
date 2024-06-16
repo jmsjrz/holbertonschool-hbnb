@@ -34,7 +34,15 @@ class CountryResource(Resource):
     @countries_api.doc('get_country')
     @countries_api.marshal_with(country_model)
     def get(self, country_id):
-        '''Fetch a country given its identifier'''
+        '''
+        Fetch a country given its identifier
+
+        Args:
+            country_id (str): The identifier of the country
+
+        Returns:
+            tuple: A tuple containing the country information and the HTTP status code
+        '''
         country = countries_db.get(country_id)
         if country is None:
             countries_api.abort(404, "Country not found")
@@ -44,7 +52,15 @@ class CountryResource(Resource):
     @countries_api.expect(country_model)
     @countries_api.marshal_with(country_model)
     def put(self, country_id):
-        '''Update a country given its identifier'''
+        '''
+        Update a country given its identifier
+
+        Args:
+            country_id (str): The identifier of the country
+
+        Returns:
+            tuple: A tuple containing the updated country information and the HTTP status code
+        '''
         if country_id not in countries_db:
             countries_api.abort(404, "Country not found")
         updated_country = countries_api.payload
@@ -54,7 +70,15 @@ class CountryResource(Resource):
 
     @countries_api.doc('delete_country')
     def delete(self, country_id):
-        '''Delete a country given its identifier'''
+        '''
+        Delete a country given its identifier
+
+        Args:
+            country_id (str): The identifier of the country
+
+        Returns:
+            tuple: A tuple containing an empty string and the HTTP status code
+        '''
         if country_id in countries_db:
             del countries_db[country_id]
             return '', 204

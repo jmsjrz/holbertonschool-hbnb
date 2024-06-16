@@ -36,6 +36,18 @@ class CityResource(Resource):
     @cities_api.marshal_with(city_model)
     def get(self, city_id):
         '''Fetch a city given its identifier'''
+        """
+        Retrieves a city from the database based on its identifier.
+
+        Args:
+            city_id (str): The identifier of the city.
+
+        Returns:
+            dict: The city information.
+
+        Raises:
+            404: If the city is not found in the database.
+        """
         city = cities_db.get(city_id)
         if city is None:
             cities_api.abort(404, "City not found")
@@ -46,6 +58,18 @@ class CityResource(Resource):
     @cities_api.marshal_with(city_model)
     def put(self, city_id):
         '''Update a city given its identifier'''
+        """
+        Updates a city in the database based on its identifier.
+
+        Args:
+            city_id (str): The identifier of the city.
+
+        Returns:
+            dict: The updated city information.
+
+        Raises:
+            404: If the city is not found in the database.
+        """
         if city_id not in cities_db:
             cities_api.abort(404, "City not found")
         updated_city = cities_api.payload
@@ -56,6 +80,18 @@ class CityResource(Resource):
     @cities_api.doc('delete_city')
     def delete(self, city_id):
         '''Delete a city given its identifier'''
+        """
+        Deletes a city from the database based on its identifier.
+
+        Args:
+            city_id (str): The identifier of the city.
+
+        Returns:
+            str: An empty string.
+
+        Raises:
+            404: If the city is not found in the database.
+        """
         if city_id in cities_db:
             del cities_db[city_id]
             return '', 204

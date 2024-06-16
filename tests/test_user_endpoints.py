@@ -3,6 +3,12 @@ import json
 from app import create_app
 
 class UserEndpointsTestCase(unittest.TestCase):
+    """
+    Test case for the user endpoints.
+
+    This test case includes tests for creating, retrieving, updating, and deleting users.
+    """
+
     def setUp(self):
         self.app = create_app()
         self.client = self.app.test_client()

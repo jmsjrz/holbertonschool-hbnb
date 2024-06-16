@@ -6,6 +6,29 @@ from app.models.review import Review
 from app.models.country import Country
 
 class DataManagerTestCase(unittest.TestCase):
+    """
+    Test case for the DataManager class.
+    """
+
+    def setUp(self):
+        self.data_manager = DataManager()
+        self.data_manager.clear('User')
+        self.data_manager.clear('City')
+        self.data_manager.clear('Review')
+        self.data_manager.clear('Country')
+        self.user = User(email='test@example.com', password='password123', first_name='John', last_name='Doe')
+        self.city = City(name='New York', country_code='US')
+        self.review = Review(user_id=self.user.id, place_id='123', rating=5, comment='Great place!')
+        self.country = Country(name="France", code="FR")
+
+    def tearDown(self):
+        self.data_manager.clear('User')
+        self.data_manager.clear('City')
+        self.data_manager.clear('Review')
+        self.data_manager.clear('Country')
+
+    # Rest of the test methods...
+class DataManagerTestCase(unittest.TestCase):
     def setUp(self):
         self.data_manager = DataManager()
         self.data_manager.clear('User')

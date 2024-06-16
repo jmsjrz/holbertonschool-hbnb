@@ -5,6 +5,10 @@ from app.models.place import Place
 from app.persistence.data_manager import DataManager
 
 class PlaceModelTestCase(unittest.TestCase):
+    """
+    Test case for the Place model class.
+    """
+
     def setUp(self):
         self.data_manager = DataManager()
         self.test_file = self.data_manager.file_path

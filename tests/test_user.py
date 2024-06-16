@@ -3,6 +3,10 @@ from app.models.user import User
 from app.persistence.data_manager import DataManager
 
 class DataManagerTestCase(unittest.TestCase):
+    """
+    Test case for the DataManager class.
+    """
+
     def setUp(self):
         self.storage = DataManager()
         self.storage.clear('User')

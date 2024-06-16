@@ -14,7 +14,7 @@ The project involves creating `HBNB`, a platform for managing vacation rentals, 
   - [Listing Management](#listing-management)
   - [Booking Management](#booking-management)
 - [INSTALLATION AND RUNNING](#installation-and-running)
-- [EXAMPLES](#examples)
+- [EXAMPLES](#api-request-examples)
   - [User Management](#api-request-examples)
   - [Listing Management](#api-request-examples)
   - [Booking Management](#api-request-examples)
@@ -34,7 +34,7 @@ The project involves creating `HBNB`, a platform for managing vacation rentals, 
 - **Booking Management**: Management of bookings including creation, cancellation, and viewing of reservations.
 
 
-### INSTALLATION AND RUNNING
+## INSTALLATION AND RUNNING
 
 1. Clone the repository:
 
